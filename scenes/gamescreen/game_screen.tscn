@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://bg7yrah8a02hw"]
+
+[ext_resource type="Script" path="res://scenes/gamescreen/game_screen.gd" id="1_ubbg4"]
+[ext_resource type="LabelSettings" uid="uid://caw5at5nwl4uh" path="res://assets/gm_32_dg.tres" id="1_xcp3v"]
+[ext_resource type="Texture2D" uid="uid://bpnxuiqhmpuk3" path="res://assets/ui/blue_button00.png" id="2_btu05"]
+[ext_resource type="PackedScene" uid="uid://ds7dtj5me3a02" path="res://scenes/memeorytile/memory_tile.tscn" id="2_qbywf"]
+[ext_resource type="Texture2D" uid="uid://8hduxb7e42ur" path="res://assets/ui/yellow_button00.png" id="3_rdd00"]
+[ext_resource type="Texture2D" uid="uid://c1ec5c3d2fs00" path="res://assets/ui/green_button00.png" id="4_ayogh"]
+[ext_resource type="LabelSettings" uid="uid://daw8wxluae0ra" path="res://assets/gm_32__Wh.tres" id="5_m4pp6"]
+[ext_resource type="PackedScene" uid="uid://c5jb3swejftm5" path="res://scenes/scorer/scorer.tscn" id="8_61ig3"]
+[ext_resource type="PackedScene" uid="uid://bu0os0ifyqbwm" path="res://scenes/gameover/game_over.tscn" id="9_5phdj"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ubbg4")
+mem_tile_scene = ExtResource("2_qbywf")
+
+[node name="HB" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MC1" type="MarginContainer" parent="HB"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TileContainer" type="GridContainer" parent="HB/MC1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MC2" type="MarginContainer" parent="HB"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/margin_right = 18
+
+[node name="VB" type="VBoxContainer" parent="HB/MC2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="HB" type="HBoxContainer" parent="HB/MC2/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HB/MC2/VB/HB"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "moves"
+label_settings = ExtResource("1_xcp3v")
+vertical_alignment = 1
+
+[node name="MovesLabel" type="Label" parent="HB/MC2/VB/HB"]
+layout_mode = 2
+text = "000"
+label_settings = ExtResource("1_xcp3v")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HB2" type="HBoxContainer" parent="HB/MC2/VB"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HB/MC2/VB/HB2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "pairs"
+label_settings = ExtResource("1_xcp3v")
+vertical_alignment = 1
+
+[node name="PairsLabel" type="Label" parent="HB/MC2/VB/HB2"]
+layout_mode = 2
+text = "0 / 00"
+label_settings = ExtResource("1_xcp3v")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="HB/MC2/VB"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="HB/MC2/VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_btu05")
+texture_pressed = ExtResource("3_rdd00")
+texture_hover = ExtResource("4_ayogh")
+
+[node name="Label" type="Label" parent="HB/MC2/VB/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT
+"
+label_settings = ExtResource("5_m4pp6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
+[node name="Scorer" parent="." instance=ExtResource("8_61ig3")]
+
+[node name="GameOver" parent="." instance=ExtResource("9_5phdj")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="HB/MC2/VB/ExitButton" to="." method="_on_exit_button_pressed"]

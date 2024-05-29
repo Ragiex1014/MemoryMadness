@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://w6aam75tdvhj"]
+
+[ext_resource type="Script" path="res://scenes/mainscreen/main_screen.gd" id="1_2v5jf"]
+[ext_resource type="FontFile" uid="uid://b1jsuqwkulm6s" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_ipqei"]
+[ext_resource type="PackedScene" uid="uid://bfcvsov1r7u2b" path="res://scenes/levelbutoon/level_button.tscn" id="2_netog"]
+[ext_resource type="PackedScene" uid="uid://cqfuveiptlqpm" path="res://scenes/frontsprite/front_sprite.tscn" id="2_tekk5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3gwh"]
+font = ExtResource("1_ipqei")
+font_size = 84
+font_color = Color(0.92549, 0.988235, 0.796078, 1)
+outline_size = 6
+outline_color = Color(0.396078, 0.639216, 0.0509804, 1)
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2v5jf")
+level_button_scene = ExtResource("2_netog")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0156863, 0.372549, 0.313726)
+
+[node name="VB" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer4" type="Control" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleLabel" type="Label" parent="VB"]
+layout_mode = 2
+text = "MEMORY MADNESS"
+label_settings = SubResource("LabelSettings_s3gwh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer3" type="Control" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HbLevels" type="HBoxContainer" parent="VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="Spacer2" type="Control" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HbSprites" type="HBoxContainer" parent="VB"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 72
+
+[node name="FrontSprite" parent="VB/HbSprites" instance=ExtResource("2_tekk5")]
+layout_mode = 2
+
+[node name="FrontSprite2" parent="VB/HbSprites" instance=ExtResource("2_tekk5")]
+layout_mode = 2
+
+[node name="FrontSprite3" parent="VB/HbSprites" instance=ExtResource("2_tekk5")]
+layout_mode = 2
+
+[node name="FrontSprite4" parent="VB/HbSprites" instance=ExtResource("2_tekk5")]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="VB"]
+layout_mode = 2
+size_flags_vertical = 3
